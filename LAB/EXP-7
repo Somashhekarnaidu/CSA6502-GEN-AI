@@ -1,0 +1,14 @@
+# Summarization
+summary_prompt = "Summarize the following text in 50 words: Artificial Intelligence is revolutionizing healthcare..."
+summary = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":summary_prompt}])
+print("Summary:\n", summary.choices[0].message.content)
+
+# Email creation
+email_prompt = "Write a professional email requesting sick leave for 2 days due to illness."
+email = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":email_prompt}])
+print("\nEmail:\n", email.choices[0].message.content)
+
+# Content generation
+blog_prompt = "Write a 200-word blog on Applications of AI in Healthcare."
+blog = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":blog_prompt}])
+print("\nBlog:\n", blog.choices[0].message.content)
