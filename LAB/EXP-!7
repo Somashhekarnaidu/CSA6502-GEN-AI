@@ -1,0 +1,7 @@
+query = "AI in hospitals"
+query_embedding = client.embeddings.create(model="text-embedding-3-small", input=query).data[0].embedding
+
+# Rank documents by similarity
+scores = [cosine_sim(query_embedding, emb) for emb in embeddings]
+for doc, score in zip(docs, scores):
+    print(f"{doc} -> {score:.4f}")
