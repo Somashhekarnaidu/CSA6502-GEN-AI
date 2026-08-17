@@ -1,0 +1,17 @@
+from openai import OpenAI
+import numpy as np
+
+client = OpenAI()
+
+# Example documents
+docs = ["AI improves healthcare", "AI helps in education", "AI detects fraud in finance"]
+
+# Generate embeddings
+embeddings = [client.embeddings.create(model="text-embedding-3-small", input=doc).data[0].embedding for doc in docs]
+
+# Cosine similarity function
+def cosine_sim(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+# Compare first two docs
+print("Similarity:", cosine_sim(embeddings[0], embeddings[1]))
