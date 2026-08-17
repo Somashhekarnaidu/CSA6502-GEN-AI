@@ -1,0 +1,19 @@
+import pandas as pd
+
+# Example dataset with missing values
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Marks': [85, None, 90, 95]
+}
+df = pd.DataFrame(data)
+
+print("Original Data:\n", df)
+
+# Fill missing values with average
+df['Marks'].fillna(df['Marks'].mean(), inplace=True)
+
+print("\nCleaned Data:\n", df)
+
+# Statistical info
+print("\nAverage Marks:", df['Marks'].mean())
+print("Highest Score:", df['Marks'].max())
