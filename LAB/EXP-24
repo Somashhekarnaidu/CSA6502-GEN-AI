@@ -1,0 +1,5 @@
+external_docs = ["AI improves agriculture", "AI helps climate change research"]
+vectorstore = FAISS.from_texts(external_docs, embedding_model)
+
+qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model="gpt-4"), retriever=vectorstore.as_retriever())
+print(qa.run("How does AI help agriculture?"))
