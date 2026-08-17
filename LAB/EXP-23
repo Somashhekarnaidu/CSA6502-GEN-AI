@@ -1,0 +1,7 @@
+from langchain.memory import ConversationBufferMemory
+
+memory = ConversationBufferMemory()
+qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model="gpt-4"), retriever=vectorstore.as_retriever(), memory=memory)
+
+print(qa.run("Tell me about AI in healthcare"))
+print(qa.run("And what about education?"))
