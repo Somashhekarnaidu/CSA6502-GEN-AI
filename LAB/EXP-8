@@ -1,0 +1,9 @@
+# OpenAI Example
+response = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":"Hello AI, explain reinforcement learning simply."}])
+print(response.choices[0].message.content)
+
+# Hugging Face Example
+from huggingface_hub import InferenceClient
+hf_client = InferenceClient("meta-llama/Llama-2-7b-chat-hf")
+resp = hf_client.text_generation("Explain reinforcement learning simply.", max_new_tokens=200)
+print(resp)
