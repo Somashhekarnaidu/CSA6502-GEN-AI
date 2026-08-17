@@ -1,0 +1,14 @@
+prompts = {
+    "Zero-shot": "Write a promotional social media post for an AI Workshop.",
+    "One-shot": "Example: Join us for the Data Science Bootcamp this weekend! Learn, network, and grow your skills. Now, write a promotional social media post for an AI Workshop.",
+    "Few-shot": "Example 1: Join us for the Data Science Bootcamp this weekend! Learn, network, and grow your skills. Example 2: Don’t miss our Cloud Computing Workshop! Hands-on training and expert guidance await. Now, write a promotional social media post for an AI Workshop."
+}
+
+results = {}
+for strategy, prompt in prompts.items():
+    resp = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":prompt}])
+    results[strategy] = resp.choices[0].message.content
+
+# Comparative Analysis
+for strategy, output in results.items():
+    print(f"\n{strategy} Output:\n{output}")
