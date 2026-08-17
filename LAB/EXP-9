@@ -1,0 +1,9 @@
+# Python code generation
+python_prompt = "Write Python code to calculate factorial of a number."
+python_code = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":python_prompt}])
+print("Python Code:\n", python_code.choices[0].message.content)
+
+# SQL query generation
+sql_prompt = "Write an SQL query to find the top 5 students with highest marks from 'student' table."
+sql_code = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":sql_prompt}])
+print("\nSQL Query:\n", sql_code.choices[0].message.content)
