@@ -1,0 +1,20 @@
+from openai import OpenAI
+client = OpenAI()
+
+# Zero-shot
+zero_shot = "Write a product description for a Smart Fitness Watch."
+response_zero = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":zero_shot}])
+print("Zero-shot:\n", response_zero.choices[0].message.content)
+
+# One-shot
+one_shot = """Example: The EcoBottle is a reusable water bottle designed for durability and style.
+Now, write a product description for a Smart Fitness Watch."""
+response_one = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":one_shot}])
+print("\nOne-shot:\n", response_one.choices[0].message.content)
+
+# Few-shot
+few_shot = """Example 1: The EcoBottle is a reusable water bottle designed for durability and style.
+Example 2: The SmartLamp is an energy-efficient lamp with customizable brightness settings.
+Now, write a product description for a Smart Fitness Watch."""
+response_few = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role":"user","content":few_shot}])
+print("\nFew-shot:\n", response_few.choices[0].message.content)
