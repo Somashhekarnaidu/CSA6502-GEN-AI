@@ -1,0 +1,11 @@
+# Store documents with embeddings
+doc_store = {i: {"text": docs[i], "embedding": embeddings[i]} for i in range(len(docs))}
+
+# Retrieve top-k
+def top_k_search(query, k=2):
+    q_emb = client.embeddings.create(model="text-embedding-3-small", input=query).data[0].embedding
+    scores = [(i, cosine_sim(q_emb, doc_store[i]["embedding"])) for i in doc_store]
+    sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
+    return [doc_store[i]["text"] for i, _ in sorted_scores[:k]]
+
+print(top_k_search("AI in healthcare"))
