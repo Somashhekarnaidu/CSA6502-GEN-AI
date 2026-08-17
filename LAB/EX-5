@@ -1,0 +1,18 @@
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+# Example text vectors
+doc1 = np.array([[1, 2, 3]])
+doc2 = np.array([[2, 3, 4]])
+
+similarity = cosine_similarity(doc1, doc2)
+
+print("Cosine Similarity Score:", similarity[0][0])
+
+# Interpretation
+if similarity[0][0] > 0.8:
+    print("The documents are highly similar.")
+elif similarity[0][0] > 0.5:
+    print("The documents are moderately similar.")
+else:
+    print("The documents are not very similar.")
