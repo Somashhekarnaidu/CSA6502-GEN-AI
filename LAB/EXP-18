@@ -1,0 +1,13 @@
+import faiss
+
+# Convert embeddings to numpy array
+embedding_matrix = np.array(embeddings).astype("float32")
+
+# Build FAISS index
+index = faiss.IndexFlatL2(embedding_matrix.shape[1])
+index.add(embedding_matrix)
+
+# Search top-k
+query_vector = np.array([query_embedding]).astype("float32")
+D, I = index.search(query_vector, k=2)
+print("Top results:", [docs[i] for i in I[0]])
